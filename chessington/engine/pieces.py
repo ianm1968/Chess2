@@ -63,11 +63,19 @@ class Pawn(Piece):
                 moves.append(next_next_square)
             else:
                 moves.append(next_square)
+
         left_take = board.get_piece(next_square_left) 
         if (left_take != None and left_take.player != self.player):
             moves.append(next_square_left)        
-        if (board.get_piece(next_square_right) != None and board.get_piece(next_square_right).player != self.player):
-            moves.append(next_square_right)
+        if (left_take != None and left_take.player != self.player):
+            moves.append(next_square_left)  
+
+        right_take = board.get_piece(next_square_right) 
+        if (right_take != None and right_take.player != self.player):
+            moves.append(next_square_right)        
+        if (right_take != None and right_take.player != self.player):
+            moves.append(next_square_right)  
+
         return moves
 
 class Knight(Piece):
