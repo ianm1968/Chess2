@@ -67,14 +67,11 @@ class Pawn(Piece):
         left_take = board.get_piece(next_square_left) 
         if (left_take != None and left_take.player != self.player):
             moves.append(next_square_left)        
-        if (left_take != None and left_take.player != self.player):
-            moves.append(next_square_left)  
 
         right_take = board.get_piece(next_square_right) 
         if (right_take != None and right_take.player != self.player):
             moves.append(next_square_right)        
-        if (right_take != None and right_take.player != self.player):
-            moves.append(next_square_right)  
+
 
         return moves
 
@@ -84,7 +81,38 @@ class Knight(Piece):
     """
 
     def get_available_moves(self, board):
-        return []
+        knight_moves = ((2,1),(2,-1),(-2,1),(-2,-1),(1,2),(1,-2),(-1,2),(-1,-2))
+        moves = []
+        current_square = board.find_piece(self)
+        for i in range(len(knight_moves)):
+            moves.append(
+                Square(current_square.row + knight_moves[i][0],
+                       current_square.col + knight_moves[i][1]))
+        # next_square = Square(current_square.row+direction, current_square.col)
+        # next_next_square = Square(current_square.row+(direction*2), current_square.col)
+        # next_square_left = Square(current_square.row+direction, current_square.col-direction)
+        # next_square_right = Square(current_square.row+direction, current_square.col+direction)
+        
+
+            
+        # if current_square.row == max_row or board.get_piece(next_square) != None:
+        #     return []
+        # else:
+        #     if current_square.row == start_row and board.get_piece(next_next_square) == None:
+        #         moves.append(next_square)
+        #         moves.append(next_next_square)
+        #     else:
+        #         moves.append(next_square)
+
+        # left_take = board.get_piece(next_square_left) 
+        # if (left_take != None and left_take.player != self.player):
+        #     moves.append(next_square_left)        
+
+        # right_take = board.get_piece(next_square_right) 
+        # if (right_take != None and right_take.player != self.player):
+        #     moves.append(next_square_right)        
+
+        return moves
 
 
 class Bishop(Piece):
